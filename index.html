@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/custom-select.css">
+    <link rel="stylesheet" href="css/datepicker.css">
+    <title>Agendar cita</title>
+</head>
+
+<body>
+    <div id="preloader_container" class="modal">
+        <img id="_1" src="img/SVG/Recurso 1.svg">
+        <img id="_2" src="img/SVG/Recurso 3.svg">
+        <img id="_3" src="img/SVG/Recurso 1.svg">
+        <img id="_4" src="img/SVG/Recurso 3.svg">
+        <img id="_5" src="img/SVG/Recurso 1.svg">
+        <img id="_6" src="img/SVG/Recurso 3.svg">
+        <img id="_7" src="img/SVG/Recurso 1.svg">
+    </div>
+    <img id="logo" src="/img/logo.png" alt="">
+    <div id="container" class="container">
+        <div class="header">
+            <div class="number">
+                <p>1</p>
+            </div>
+            <p>Elige tu sucursal</p>
+        </div>
+        <div class="inputs">
+            <div class="custom-select" style="width:100%">
+                <select name="sucursal" id="sucursal">
+                    <option value="">DEL VALLE</option>
+                    <option value="">JUAREZ/ROMA</option>
+                    <option value="">SANTA FE</option>
+                    <option value="">POLANCO</option>
+                    <option value="">PEDREGAL</option>
+                    <option value="">METEPEC</option>
+                    <option value="">CUERNAVACA</option>
+                    <option value="">MTY</option>
+                    <option value="">GLD</option>
+                    <option value="">PUEBLA</option>
+                    <option value="">QRO</option>
+                </select>
+            </div>
+            <input type="text" name="foo" id="fecha" placeholder="Seleccione una fecha" readonly>
+        </div>
+        <p id="horariosP">Horarios</p>
+        <div id="horarios" class="horarios"></div>
+        <!-- <button id="agendar_btn">AGENDAR</button> -->
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker.min.js"></script>
+    <script src="js/custom-select.js"></script>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
