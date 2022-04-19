@@ -67,10 +67,14 @@ button {
   margin-bottom: 15px;
 }
 
+button:hover {
+  cursor: pointer;
+}
+
 #formulario_btn {
-    border: 1px solid #008833;
-    background: #fffcf2;
-    color: #008833;
+  border: 1px solid #008833;
+  background: #fffcf2;
+  color: #008833;
 }
 
 #horariosP {
@@ -84,7 +88,6 @@ button {
   padding: 10px;
   margin-bottom: 10px;
 }
-
 
 /* clases para la elección de los horarios */
 .horario_active {
@@ -173,19 +176,18 @@ input[type="text"]:focus {
 }
 
 .info_cita > div > div {
-    border: 1px solid #008833;
-    font-size: 1.2rem;
-    color: #008833;
-    padding: 10px;
-    margin-bottom: 10px;
+  border: 1px solid #008833;
+  font-size: 1.2rem;
+  color: #008833;
+  padding: 10px;
+  margin-bottom: 10px;
 }
 
 .info_cita p {
-    margin-top: 0;
-    margin-bottom: 5px;
-    font-size: 1.2rem;
+  margin-top: 0;
+  margin-bottom: 5px;
+  font-size: 1.2rem;
 }
-
 
 /* animacion de carga */
 .modal {
