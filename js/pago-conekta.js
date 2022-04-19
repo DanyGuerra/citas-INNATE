@@ -1,5 +1,13 @@
-let pagoExitoso = null;
+const loader = document.getElementById("preloader_container");
 const pagarBtn = document.getElementById("pagar_btn");
+const modal = document.getElementById("modal");
+const modalBtn = document.getElementById("modalBtn");
+const modalText = document.getElementById("modal_text");
+
+modalBtn.addEventListener("click", async (e) => {
+  modal.style.display = "none";
+});
+
 pagarBtn.addEventListener("click", async (e) => {
   e.preventDefault();
   document.getElementById("preloader_container").style.display = "flex";
@@ -10,14 +18,20 @@ pagarBtn.addEventListener("click", async (e) => {
 
   try {
     const token = await new Promise(getToken);
-    console.log(token);
     const datosOrden = obtenerDatosOrden();
-    const pagado = await pagar(token, datosOrden);
-    console.log(pagado);
+    const reciboPagado = await pagar(token, datosOrden);
+    showModal("Pago realizado \n" + reciboPagado.payment_status);
   } catch (error) {
-    console.error(error);
+    showModal("Pago rechazado \n" + error.message);
+    // alert("Hubo un error con tu pago verifica tus datos o intentalo mas tarde");
   }
 });
+
+function showModal(message) {
+  loader.style.display = "none";
+  modal.style.display = "flex";
+  modalText.innerText = message;
+}
 
 function getToken(resolve, reject) {
   let tarjetahabiente = document.getElementById("tarjetahabiente").value;
@@ -43,7 +57,6 @@ function getToken(resolve, reject) {
   function errorToken(err) {
     /* err keys: object, type, message, message_to_purchaser, param, code */
     reject(err);
-    console.error(err);
   }
 
   //Definir la llave ppublica dependiendo de la sucursal
@@ -51,112 +64,116 @@ function getToken(resolve, reject) {
   Conekta.Token.create(data, successToken, errorToken);
 }
 
-function pagar(token, datosOrden) {
-  return new Promise(function (resolve, reject) {
-    const opcionesCrearCliente = {
-      method: "POST",
-      // mode: "no-cors",
-      headers: {
-        //Definir llave privada dependiendo de la sucursal
-        // "Access-Control-Allow-Origin": "http://127.0.0.1:5500/INNATE/pago.html",
-        Authorization: "Bearer key_eG5Zy3hggDsb3XLzWr1GKg",
-        Accept: "application/vnd.conekta-v2.0.0+json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        livemode: false,
-        name: datosOrden.paciente,
-        email: datosOrden.correo,
-        phone: datosOrden.telefono,
-        payment_sources: [
-          {
-            type: "card",
-            token_id: token.id, //Token paso anterior response.id
-          },
-        ],
-      }),
-    };
-
-    fetch("https://api.conekta.io/customers", opcionesCrearCliente)
-      .then((response) => response.json())
-      .then((response) => {
-        const opcionesCrearOrden = {
-          method: "POST",
-          // mode: "no-cors",
-          headers: {
-            // "Access-Control-Allow-Origin":
-            //   "http://127.0.0.1:5500/INNATE/pago.html",
-
-            //Definir llave privada dependiendo de la sucursal
-            Authorization: "Bearer key_eG5Zy3hggDsb3XLzWr1GKg",
-            Accept: "application/vnd.conekta-v2.0.0+json",
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            amount: datosOrden.precioCentavos,
-            currency: "MXN",
-            amount_refunded: 0,
-            customer_info: {
-              customer_id: response.id, //Id del cliente paso anterior
+const pagar = function (token, datosOrden) {
+  return new Promise(async function (resolve, reject) {
+    try {
+      const opcionesCrearCliente = {
+        method: "POST",
+        // mode: "no-cors",
+        headers: {
+          //Definir llave privada dependiendo de la sucursal
+          // "Access-Control-Allow-Origin": "http://127.0.0.1:5500/INNATE/pago.html",
+          Authorization: "Bearer key_eG5Zy3hggDsb3XLzWr1GKg",
+          Accept: "application/vnd.conekta-v2.0.0+json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          livemode: false,
+          name: datosOrden.paciente,
+          email: datosOrden.correo,
+          phone: datosOrden.telefono,
+          payment_sources: [
+            {
+              type: "card",
+              token_id: token.id, //Token paso anterior response.id
             },
+          ],
+        }),
+      };
 
-            metadata: {
-              Integration: "API", //Nos indica que te has integrado por tu cuenta utilizando la API Conekta
-              Integration_Type: "PHP 8.0", //Nos menciona el lenguaje que utilizas para integrarte
-              // Objeto de Metadatos para ingresar información de interés de tu comercio y después recuperarlo por Reporting, puedes ingresar máximo 100 elementos y puedes ingresar caracteres especiales
+      const createClient = await fetch(
+        "https://api.conekta.io/customers",
+        opcionesCrearCliente
+      );
+
+      const client = await createClient.json();
+      const opcionesCrearOrden = {
+        method: "POST",
+        // mode: "no-cors",
+        headers: {
+          // "Access-Control-Allow-Origin":
+          //   "http://127.0.0.1:5500/INNATE/pago.html",
+
+          //Definir llave privada dependiendo de la sucursal
+          Authorization: "Bearer key_eG5Zy3hggDsb3XLzWr1GKg",
+          Accept: "application/vnd.conekta-v2.0.0+json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: datosOrden.precioCentavos,
+          currency: "MXN",
+          amount_refunded: 0,
+          customer_info: {
+            customer_id: client.id, //Id del cliente paso anterior
+          },
+
+          metadata: {
+            Integration: "API", //Nos indica que te has integrado por tu cuenta utilizando la API Conekta
+            Integration_Type: "PHP 8.0", //Nos menciona el lenguaje que utilizas para integrarte
+            // Objeto de Metadatos para ingresar información de interés de tu comercio y después recuperarlo por Reporting, puedes ingresar máximo 100 elementos y puedes ingresar caracteres especiales
+          },
+          line_items: [
+            {
+              //Informacion de la orden
+              name: "Cita sucursal del valle",
+              unit_price: datosOrden.precioCentavos,
+              quantity: 1,
+              description: "Description",
             },
-            line_items: [
-              {
-                //Informacion de la orden
-                name: "Cita sucursal del valle",
-                unit_price: datosOrden.precioCentavos,
-                quantity: 1,
-                description: "Description",
+          ],
+          charges: [
+            {
+              payment_method: {
+                //"monthly_installments": 3, //Este parámetro se usa para incluir MSI en cargo único
+                type: "default",
               },
-            ],
-            charges: [
-              {
-                payment_method: {
-                  //"monthly_installments": 3, //Este parámetro se usa para incluir MSI en cargo único
-                  type: "default",
-                },
+            },
+          ],
+          discount_lines: [
+            {
+              code: "Cupón de descuento en orden sin cargo",
+              amount: 0,
+              type: "loyalty", //'loyalty', 'campaign', 'coupon' o 'sign'
+            },
+          ],
+          tax_lines: [
+            {
+              description: "IVA",
+              amount: 0,
+              metadata: {
+                // Objeto de Metadatos para ingresar información de interés de tu comercio y después recuperarlo por Reporting, puedes ingresar máximo 100 elementos y puedes ingresar caracteres especiales
+                IEPS: "1800",
               },
-            ],
-            discount_lines: [
-              {
-                code: "Cupón de descuento en orden sin cargo",
-                amount: 0,
-                type: "loyalty", //'loyalty', 'campaign', 'coupon' o 'sign'
-              },
-            ],
-            tax_lines: [
-              {
-                description: "IVA",
-                amount: 0,
-                metadata: {
-                  // Objeto de Metadatos para ingresar información de interés de tu comercio y después recuperarlo por Reporting, puedes ingresar máximo 100 elementos y puedes ingresar caracteres especiales
-                  IEPS: "1800",
-                },
-              },
-            ],
-          }),
-        };
-        fetch("https://api.conekta.io/orders", opcionesCrearOrden)
-          .then((response) => response.json())
-          .then((response) => {
-            resolve(response);
-          })
-          .catch((err) => {
-            reject(err);
-            console.error(err);
-          });
-      })
-      .catch((err) => {
-        reject(err);
-        console.error(err);
-      });
+            },
+          ],
+        }),
+      };
+
+      const createOrder = await fetch(
+        "https://api.conekta.io/orders",
+        opcionesCrearOrden
+      );
+      const order = await createOrder.json();
+      if (createOrder.ok) {
+        resolve(order);
+      } else {
+        reject({ message: order.details[0].debug_message });
+      }
+    } catch (error) {
+      reject(error);
+    }
   });
-}
+};
 
 function obtenerDatosOrden() {
   let datosForm;
