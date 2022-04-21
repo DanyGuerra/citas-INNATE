@@ -20,6 +20,10 @@ app.get("/", (req, res) => {
   res.render("index", { titulo: "My page" });
 });
 
+app.get("/pago", (req, res) => {
+  res.render("pago", { titulo: "My page" });
+});
+
 app.listen(PORT, () => {
   console.log(`App running in http://localhost:${PORT}`);
 });
