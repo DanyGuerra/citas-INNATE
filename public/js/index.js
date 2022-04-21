@@ -76,45 +76,43 @@ let animation = false;
 let setAnimationInterval = null;
 let deleteAnimationInterval = null;
 
-
 calendario.addEventListener("changeDate", () => {
   fecha = datepicker.getDate("dd/mm/yyyy");
   mes = parseInt(datepicker.getDate("mm"));
 
   document.getElementById("preloader_container").style.display = "flex";
-  setAnimation()
+  setAnimation();
   /**
    * Tuve que hacerlo así porque si agregaba el infinite a las animaciones, en la segunda iteración se descuadraban los tiempos de espera;
    * entonces solo se anima una vez, se eliminan las animaciones de cada uno, y se vuelven a agregar.
    * Cuando obtenemos la información se eliminan los intervalos.
    */
-  deleteAnimationInterval = setInterval(deleteAnimation, 1100)
-  setAnimationInterval =  setInterval(setAnimation, 2200)
+  deleteAnimationInterval = setInterval(deleteAnimation, 1100);
+  setAnimationInterval = setInterval(setAnimation, 2200);
 
   if (horariosLlenos) deleteHorarios();
   setHorarios();
   // if (!btnAgregar) addButtonAgendar();
 });
 
-
 function setAnimation() {
-  document.getElementById("_1").style.animation = "bloque 0.5s"
-  document.getElementById("_2").style.animation = "disco 0.5s 0.1s"
-  document.getElementById("_3").style.animation = "bloque 0.5s 0.2s"
-  document.getElementById("_4").style.animation = "disco 0.5s 0.3s"
-  document.getElementById("_5").style.animation = "bloque 0.5s 0.4s"
-  document.getElementById("_6").style.animation = "disco 0.5s 0.5s"
-  document.getElementById("_7").style.animation = "bloque 0.5s 0.6s"
+  document.getElementById("_1").style.animation = "bloque 0.5s";
+  document.getElementById("_2").style.animation = "disco 0.5s 0.1s";
+  document.getElementById("_3").style.animation = "bloque 0.5s 0.2s";
+  document.getElementById("_4").style.animation = "disco 0.5s 0.3s";
+  document.getElementById("_5").style.animation = "bloque 0.5s 0.4s";
+  document.getElementById("_6").style.animation = "disco 0.5s 0.5s";
+  document.getElementById("_7").style.animation = "bloque 0.5s 0.6s";
 }
 
 function deleteAnimation() {
-  document.getElementById("_1").style.animation = ""
-  document.getElementById("_2").style.animation = ""
-  document.getElementById("_3").style.animation = ""
-  document.getElementById("_4").style.animation = ""
-  document.getElementById("_5").style.animation = ""
-  document.getElementById("_6").style.animation = ""
-  document.getElementById("_7").style.animation = ""
+  document.getElementById("_1").style.animation = "";
+  document.getElementById("_2").style.animation = "";
+  document.getElementById("_3").style.animation = "";
+  document.getElementById("_4").style.animation = "";
+  document.getElementById("_5").style.animation = "";
+  document.getElementById("_6").style.animation = "";
+  document.getElementById("_7").style.animation = "";
 }
 
 // agrega los horarios
@@ -129,20 +127,20 @@ function setHorarios() {
       if (horariosData.length != 0) {
         horariosData.forEach((horario) => {
           let key = Object.keys(horario).toString();
-          let hora = key.slice(0,-6);
+          let hora = key.slice(0, -6);
           // corto los últimos seis carácteres porque el resultado de obtener las keys es "N,fecha", donde N es la hora
-  
+
           const opcHorario = document.createElement("div");
-  
+
           // horario_inactive son los horarios que pueden ser seleccionados, pero es inactive porque no está seleccionado
           if (horario[hora]) opcHorario.classList = "horario_inactive";
           else opcHorario.classList = "disable";
           // y disable son los que no están disponibles
-          
+
           // creo que esto se eliminará por lo que habíamos acordado que es mejor que nos manden la información con el formato deseado
           hora = amPm(parseInt(hora));
           opcHorario.innerText = hora;
-  
+
           document.getElementById("horarios").appendChild(opcHorario);
         });
         if (!btnAgregar) addButtonAgendar();
@@ -150,7 +148,7 @@ function setHorarios() {
 
       setListeners();
       document.getElementById("preloader_container").style.display = "none";
-      clearInterval(setAnimationInterval, deleteAnimationInterval)
+      clearInterval(setAnimationInterval, deleteAnimationInterval);
     });
 
   horariosLlenos = true;
@@ -193,13 +191,13 @@ function setListeners() {
     if (horario.classList != "disable") {
       horario.addEventListener("click", () => {
         const active = document.getElementById("horario_active");
-  
+
         if (active) {
           active.removeAttribute("class");
           active.removeAttribute("id");
           active.classList = "horario_inactive";
         }
-  
+
         horario.classList = "horario_active";
         horario.setAttribute("id", "horario_active");
       });
@@ -219,7 +217,7 @@ function addButtonAgendar() {
     const horarios = document.getElementsByClassName("horario_active");
     if (horarios.length == 0) console.log("no se ha seleccionado un horario");
     // creo que debe haber una mejor opción para pasar el parámetro de mes a la siguiente página, porque se podría sustituir el mes fácilmente.
-    else window.location.href = "http://127.0.0.1:5500/pago.html?mes=" + mes;
+    else window.location.href = "http://127.0.0.1:5000/pago";
   });
 
   btnAgregar = true;
