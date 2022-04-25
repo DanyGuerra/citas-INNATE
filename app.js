@@ -1,29 +1,21 @@
 const express = require("express");
-const path = require("path");
 const app = express();
+const path = require("path");
 const bodyParser = require("body-parser");
-const PORT = process.env.PORT || 5000;
 
 app.set("view engine", "ejs");
-app.set("views", __dirname + "/views");
-app.use(express.static(__dirname + "/public"));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.set("views", path.join(__dirname, "/views"));
 
-app.use(
-  express.urlencoded({
-    extended: true,
-  })
-);
+app.use("/citas/public", express.static(process.cwd() + "/public"));
 
-app.get("/", (req, res) => {
+app.get("/citas/", (req, res) => {
   res.render("index", { titulo: "My page" });
 });
 
-app.get("/pago", (req, res) => {
+app.get("/citas/pagos/", (req, res) => {
   res.render("pago", { titulo: "My page" });
 });
 
-app.listen(PORT, () => {
-  console.log(`App running in http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log("Running");
 });
