@@ -1,8 +1,6 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
 const path = require("path");
-const bodyParser = require("body-parser");
 
 const datos = {
   horarios: [
@@ -57,7 +55,7 @@ app.get("/citas/api/horarios", (req, res) => {
   res.json(horaPorFecha);
 });
 
-app.get("/citas/", (req, res) => {
+app.get("/citas/agendar", (req, res) => {
   res.render("index", { titulo: "My page" });
 });
 
