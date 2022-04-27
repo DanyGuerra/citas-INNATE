@@ -63,6 +63,10 @@ app.get("/citas/pagos/", (req, res) => {
   res.render("pago", { titulo: "My page" });
 });
 
+app.get("/citas/pagos/confirmacion", (req, res) => {
+  res.render("confirmacion", { titulo: "My page" });
+});
+
 app.listen(3000, () => {
   console.log(`App running in: http://localhost:3000/citas/agendar`);
 });

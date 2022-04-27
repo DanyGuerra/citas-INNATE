@@ -23,7 +23,8 @@ pagarBtn.addEventListener("click", async (e) => {
     const token = await new Promise(getToken);
     const datosOrden = obtenerDatosOrden();
     const reciboPagado = await pagar(token, datosOrden);
-    showModal("Pago realizado \n" + reciboPagado.payment_status);
+    // showModal("Pago realizado" + reciboPagado.payment_status);
+    confirmacion();
   } catch (error) {
     showModal("Pago rechazado \n" + error.message);
     // alert("Hubo un error con tu pago verifica tus datos o intentalo mas tarde");
@@ -34,6 +35,12 @@ function showModal(message) {
   loader.style.display = "none";
   modal.style.display = "flex";
   modalText.innerText = message;
+}
+
+function confirmacion() {
+  loader.style.display = "none";
+  modal.style.display = "flex";
+  window.location.href = "http://localhost:3000/citas/pagos/confirmacion";
 }
 
 function getToken(resolve, reject) {
