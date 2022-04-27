@@ -64,5 +64,5 @@ app.get("/citas/pagos/", (req, res) => {
 });
 
 app.listen(3000, () => {
-  console.log("Running");
+  console.log(`App running in: http://localhost:3000/citas/agendar`);
 });
