@@ -4,6 +4,9 @@ const modal = document.getElementById("modal");
 const modalBtn = document.getElementById("modalBtn");
 const modalText = document.getElementById("modal_text");
 
+let privateKey = "Bearer key_ixHyfwR1QKEtuCP8qXbVDQ";
+let publicKey = "key_Er9ywVWsJu2nfsUPM6Zksyw";
+
 modalBtn.addEventListener("click", async (e) => {
   modal.style.display = "none";
 });
@@ -60,7 +63,7 @@ function getToken(resolve, reject) {
   }
 
   //Definir la llave ppublica dependiendo de la sucursal
-  Conekta.setPublicKey("key_B7QGT6NdLs9hxU9i1vdUyrA");
+  Conekta.setPublicKey(publicKey);
   Conekta.Token.create(data, successToken, errorToken);
 }
 
@@ -73,7 +76,7 @@ const pagar = function (token, datosOrden) {
         headers: {
           //Definir llave privada dependiendo de la sucursal
           // "Access-Control-Allow-Origin": "http://127.0.0.1:5500/INNATE/pago.html",
-          Authorization: "Bearer key_eG5Zy3hggDsb3XLzWr1GKg",
+          Authorization: privateKey,
           Accept: "application/vnd.conekta-v2.0.0+json",
           "Content-Type": "application/json",
         },
@@ -99,13 +102,9 @@ const pagar = function (token, datosOrden) {
       const client = await createClient.json();
       const opcionesCrearOrden = {
         method: "POST",
-        // mode: "no-cors",
         headers: {
-          // "Access-Control-Allow-Origin":
-          //   "http://127.0.0.1:5500/INNATE/pago.html",
-
           //Definir llave privada dependiendo de la sucursal
-          Authorization: "Bearer key_eG5Zy3hggDsb3XLzWr1GKg",
+          Authorization: privateKey,
           Accept: "application/vnd.conekta-v2.0.0+json",
           "Content-Type": "application/json",
         },
