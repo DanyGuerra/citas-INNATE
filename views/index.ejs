@@ -19,52 +19,60 @@
   </head>
 
   <body>
-    <!--<h1><%= titulo %></h1>-->
-    <div id="preloader_container" class="modal">
-      <img id="_1" src="/citas/public/img/SVG/Recurso 1.svg" />
-      <img id="_2" src="/citas/public/img/SVG/Recurso 3.svg" />
-      <img id="_3" src="/citas/public/img/SVG/Recurso 1.svg" />
-      <img id="_4" src="/citas/public/img/SVG/Recurso 3.svg" />
-      <img id="_5" src="/citas/public/img/SVG/Recurso 1.svg" />
-      <img id="_6" src="/citas/public/img/SVG/Recurso 3.svg" />
-      <img id="_7" src="/citas/public/img/SVG/Recurso 1.svg" />
-    </div>
-    <img id="logo" src="/citas/public/img/logo.png" alt="" />
-    <div id="container" class="container">
-      <div class="header">
-        <div class="number">
-          <p>1</p>
-        </div>
-        <p>Elige tu sucursal</p>
+    <main>
+      <!--<h1><%= titulo %></h1>-->
+      <div id="preloader_container" class="modal">
+        <img id="_1" src="/citas/public/img/SVG/Recurso 1.svg" />
+        <img id="_2" src="/citas/public/img/SVG/Recurso 3.svg" />
+        <img id="_3" src="/citas/public/img/SVG/Recurso 1.svg" />
+        <img id="_4" src="/citas/public/img/SVG/Recurso 3.svg" />
+        <img id="_5" src="/citas/public/img/SVG/Recurso 1.svg" />
+        <img id="_6" src="/citas/public/img/SVG/Recurso 3.svg" />
+        <img id="_7" src="/citas/public/img/SVG/Recurso 1.svg" />
       </div>
-      <div class="inputs">
-        <div class="custom-select" style="width: 100%">
-          <select name="sucursal" id="sucursal">
-            <option value="">DEL VALLE</option>
-            <option value="">JUAREZ/ROMA</option>
-            <option value="">SANTA FE</option>
-            <option value="">POLANCO</option>
-            <option value="">PEDREGAL</option>
-            <option value="">METEPEC</option>
-            <option value="">CUERNAVACA</option>
-            <option value="">MTY</option>
-            <option value="">GLD</option>
-            <option value="">PUEBLA</option>
-            <option value="">QRO</option>
-          </select>
-        </div>
-        <input
-          type="text"
-          name="foo"
-          id="fecha"
-          placeholder="Seleccione una fecha"
-          readonly
-        />
+      <div class="logo-header">
+        <img id="logo" src="/citas/public/img/logo.png" alt="" />
       </div>
-      <p id="horariosP">Horarios</p>
-      <div id="horarios" class="horarios"></div>
-      <!-- <button id="agendar_btn">AGENDAR</button> -->
-    </div>
+      <h1>Agenda tu cita</h1>
+      <div id="container" class="container">
+        <div class="header">
+          <div class="number">
+            <p>1</p>
+          </div>
+          <p>Selecciona sucursal y fecha de tu cita</p>
+        </div>
+        <div class="inputs">
+          <div class="custom-select" style="width: 100%">
+            <select name="sucursal" id="sucursal">
+              <option value="">Sucursal</option>
+              <option value="">Del Valle</option>
+              <option value="">Roma</option>
+              <option value="">Santa Fe</option>
+              <option value="">Polanco</option>
+              <option value="">Pedregal</option>
+              <option value="">Metepec</option>
+              <option value="">Cuernavaca</option>
+              <option value="">Monterrey</option>
+              <option value="">Guadalajara</option>
+              <option value="">Puebla</option>
+              <option value="">Querétaro</option>
+            </select>
+          </div>
+          <input
+            type="text"
+            name="foo"
+            id="fecha"
+            placeholder="DD / MM/ AAA"
+            readonly
+          />
+        </div>
+        <!-- <p id="horariosP">Horarios</p> -->
+        <div id="horarios" class="horarios">
+          <h1 id="title-hora">Horarios disponibles</h1>
+        </div>
+        <!-- <button id="agendar_btn">AGENDAR</button> -->
+      </div>
+    </main>
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker.min.js"></script>
     <script src="/citas/public/js/custom-select.js"></script>
     <script src="/citas/public/js/index.js"></script>

@@ -15,80 +15,85 @@
   </head>
 
   <body onload="setPrecio()">
-    <div id="preloader_container" class="modal">
-      <img id="_1" src="/citas/public/img/SVG/Recurso 1.svg" />
-      <img id="_2" src="/citas/public/img/SVG/Recurso 3.svg" />
-      <img id="_3" src="/citas/public/img/SVG/Recurso 1.svg" />
-      <img id="_4" src="/citas/public/img/SVG/Recurso 3.svg" />
-      <img id="_5" src="/citas/public/img/SVG/Recurso 1.svg" />
-      <img id="_6" src="/citas/public/img/SVG/Recurso 3.svg" />
-      <img id="_7" src="/citas/public/img/SVG/Recurso 1.svg" />
-    </div>
+    <main>
+      <div id="preloader_container" class="modal">
+        <img id="_1" src="/citas/public/img/SVG/Recurso 1.svg" />
+        <img id="_2" src="/citas/public/img/SVG/Recurso 3.svg" />
+        <img id="_3" src="/citas/public/img/SVG/Recurso 1.svg" />
+        <img id="_4" src="/citas/public/img/SVG/Recurso 3.svg" />
+        <img id="_5" src="/citas/public/img/SVG/Recurso 1.svg" />
+        <img id="_6" src="/citas/public/img/SVG/Recurso 3.svg" />
+        <img id="_7" src="/citas/public/img/SVG/Recurso 1.svg" />
+      </div>
 
-    <div class="modal" id="modal">
-      <div id="modal_content">
-        <p id="modal_text"></p>
-        <button id="modalBtn">CERRAR</button>
-      </div>
-    </div>
-
-    <img id="logo" src="/img/logo.png" alt="" />
-    <div class="container">
-      <div class="header">
-        <div class="number">
-          <p>2</p>
-        </div>
-        <p>Pago</p>
-      </div>
-      <div class="info">
-        <h2 id="precio">$1,499.00</h2>
-        <div class="values">
-          <p>DEL VALLE</p>
-          <p id="mes">MARZO</p>
-        </div>
-        <div class="keys">
-          <p>SUCURSAL</p>
-          <p>MES</p>
+      <div class="modal" id="modal">
+        <div id="modal_content">
+          <p id="modal_text"></p>
+          <button id="modalBtn">CERRAR</button>
         </div>
       </div>
-      <div class="inputs">
-        <div class="correo">
-          <p>Correo electrónico</p>
-          <input type="text" id="correo" required />
+      <div class="logo-header">
+        <img id="logo" src="/citas/public/img/logo.png" alt="" />
+      </div>
+      <h1>Agenda tu cita</h1>
+      <div class="container container-pago">
+        <div class="header">
+          <div class="number">
+            <p>2</p>
+          </div>
+          <p>Formulario para el pago de tu cita</p>
         </div>
-        <!-- <div class="contra">
+        <div class="info">
+          <h2 id="precio">$1,499.00</h2>
+          <div class="values">
+            <p>DEL VALLE</p>
+            <p id="mes">MARZO</p>
+          </div>
+          <div class="keys">
+            <p>SUCURSAL</p>
+            <p>MES</p>
+          </div>
+        </div>
+        <div class="inputs">
+          <div class="correo">
+            <p>Correo electrónico</p>
+            <input type="text" id="correo" required />
+          </div>
+          <!-- <div class="contra">
           <p>Contraseña</p>
           <input type="text" />
         </div> -->
-        <div class="tel">
-          <p>Teléfono</p>
-          <input type="text" id="telefono" required />
-        </div>
-        <div class="nombre">
-          <p>Nombre</p>
-          <input type="text" id="tarjetahabiente" required />
-        </div>
-        <div class="num_tarjtea">
-          <p>Número de tarjeta</p>
-          <input type="text" id="numero" />
-        </div>
-        <div class="datos_tarjeta">
-          <div class="mes">
-            <p>Mes</p>
-            <input type="text" id="exp-mes" required />
+          <div class="tel">
+            <p>Teléfono</p>
+            <input type="text" id="telefono" required />
           </div>
-          <div class="year">
-            <p>Año</p>
-            <input type="text" id="exp-ano" required />
+          <div class="nombre">
+            <p>Nombre</p>
+            <input type="text" id="tarjetahabiente" required />
           </div>
-          <div class="cvv">
-            <p>CVV</p>
-            <input type="text" id="cvc" required />
+          <div class="num_tarjtea">
+            <p>Número de tarjeta</p>
+            <input type="text" id="numero" />
+          </div>
+          <div class="datos_tarjeta">
+            <div class="mes">
+              <p>Mes</p>
+              <input type="text" id="exp-mes" required />
+            </div>
+            <div class="year">
+              <p>Año</p>
+              <input type="text" id="exp-ano" required />
+            </div>
+            <div class="cvv">
+              <p>CVV</p>
+              <input type="text" id="cvc" required />
+            </div>
           </div>
         </div>
+        <button id="pagar_btn">PAGAR</button>
       </div>
-      <button id="pagar_btn">PAGAR</button>
-    </div>
+    </main>
+
     <!-- <script src="js/pago.js"></script> -->
     <script src="/citas/public/js/pago-conekta.js"></script>
   </body>

@@ -130,6 +130,9 @@ function setHorarios() {
           let hora = key.slice(0, -6);
           // corto los últimos seis carácteres porque el resultado de obtener las keys es "N,fecha", donde N es la hora
 
+          const titleHour = document.getElementById("title-hora");
+          titleHour.style.display = "block";
+
           const opcHorario = document.createElement("div");
 
           // horario_inactive son los horarios que pueden ser seleccionados, pero es inactive porque no está seleccionado
