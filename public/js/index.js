@@ -131,7 +131,7 @@ function setHorarios() {
           // corto los últimos seis carácteres porque el resultado de obtener las keys es "N,fecha", donde N es la hora
 
           const titleHour = document.getElementById("title-hora");
-          titleHour.style.display = "block";
+          titleHour.style.display = "block   ";
 
           const opcHorario = document.createElement("div");
 

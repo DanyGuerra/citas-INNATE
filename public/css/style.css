@@ -236,6 +236,12 @@ input[type="text"]:focus {
   margin-bottom: 10px;
 }
 
+#right-img {
+  position: absolute;
+  right: 0;
+  top: 95px;
+}
+
 /* #_1 { animation: bloque 0.5s forwards infinite; }
 #_2 { animation: disco 0.5s 0.1s forwards infinite; }
 #_3 { animation: bloque 0.5s 0.2s forwards infinite; }
