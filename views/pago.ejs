@@ -33,7 +33,9 @@
         </div>
       </div>
       <div class="logo-header">
-        <img id="logo" src="/citas/public/img/logo.png" alt="" />
+        <a href="https://innate.mx/" target="_blank">
+          <img id="logo" src="/citas/public/img/logo.png" alt="" />
+        </a>
       </div>
       <h1>Agenda tu cita</h1>
       <div class="container container-pago">
@@ -44,57 +46,91 @@
           <p>Formulario para el pago de tu cita</p>
         </div>
         <div class="info">
+          <h3>El costo de tu cita es de:</h3>
           <h2 id="precio">$1,499.00</h2>
           <div class="values">
             <p>DEL VALLE</p>
-            <p id="mes">MARZO</p>
+            <p id="mes">27/04/2022</p>
           </div>
           <div class="keys">
             <p>SUCURSAL</p>
-            <p>MES</p>
+            <p>FECHA</p>
           </div>
         </div>
         <div class="inputs">
-          <div class="correo">
-            <p>Correo electrónico</p>
-            <input type="text" id="correo" required />
-          </div>
-          <!-- <div class="contra">
-          <p>Contraseña</p>
-          <input type="text" />
-        </div> -->
-          <div class="tel">
-            <p>Teléfono</p>
-            <input type="text" id="telefono" required />
-          </div>
           <div class="nombre">
-            <p>Nombre</p>
-            <input type="text" id="tarjetahabiente" required />
+            <input
+              type="text"
+              id="tarjetahabiente"
+              required
+              placeholder="Nombre"
+            />
           </div>
           <div class="num_tarjtea">
-            <p>Número de tarjeta</p>
-            <input type="text" id="numero" />
+            <input type="text" id="numero" placeholder="Número de tarjeta" />
           </div>
+
           <div class="datos_tarjeta">
             <div class="mes">
-              <p>Mes</p>
-              <input type="text" id="exp-mes" required />
+              <input type="text" id="exp-mes" required placeholder="MM" />
             </div>
             <div class="year">
-              <p>Año</p>
-              <input type="text" id="exp-ano" required />
+              <input type="text" id="exp-ano" required placeholder="YYYY" />
             </div>
             <div class="cvv">
-              <p>CVV</p>
-              <input type="text" id="cvc" required />
+              <input type="text" id="cvc" required placeholder="CVV" />
             </div>
+          </div>
+
+          <div class="correo">
+            <input
+              type="text"
+              id="correo"
+              required
+              placeholder="Correo Electrónico"
+            />
+          </div>
+          <div class="contra">
+            <input type="text" placeholder="Contraseña" />
+          </div>
+          <div class="tel">
+            <input type="text" id="telefono" required placeholder="Teléfono" />
           </div>
         </div>
         <button id="pagar_btn">PAGAR</button>
+        <div class="info-conekta">
+          <p>Al ingresar tus datos, aceptas los términos y condiciones</p>
+          <p class="last-p">
+            Para procesar tu pago contamos con la herramienta
+          </p>
+          <img src="/citas/public/img/logo-conekta.png" alt="" />
+        </div>
       </div>
     </main>
     <img id="right-img" src="/citas/public/img/side-img.png" alt="" />
-    <footer></footer>
+    <footer>
+      <div>
+        <img src="/citas/public/img/logo-l-footer1.png" alt="" />
+        <img src="/citas/public/img/logo-l-footer2.png" alt="" />
+      </div>
+      <div>
+        <p>INNATE &reg 2022 &middot Aviso de Privacidad</p>
+      </div>
+      <div class="social-media">
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-fb.png" alt="" />
+        </a>
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-ig.png" alt="" />
+        </a>
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-tk.png" alt="" />
+        </a>
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-yt.png" alt="" />
+        </a>
+      </div>
+    </footer>
 
     <!-- <script src="js/pago.js"></script> -->
     <script src="/citas/public/js/pago-conekta.js"></script>

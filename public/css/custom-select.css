@@ -14,13 +14,17 @@
 
 .select-selected {
   background-color: #fff;
+  height: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 /* Style the arrow inside the select element: */
 .select-selected:after {
   position: absolute;
   content: "";
-  top: 14px;
+  top: 20px;
   right: 10px;
   width: 0;
   height: 0;

@@ -7,6 +7,7 @@ body {
 }
 
 h1 {
+  font-family: "Playfair Display";
   font-size: 3.5rem;
   margin-top: 0;
   text-align: center;
@@ -45,16 +46,23 @@ p {
 
 .container {
   margin: 0px 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .header {
   display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 90%;
   margin-bottom: 30px;
 }
 
 .number {
   width: 50px;
-  border-radius: 100%;
+  border-radius: 50%;
   background-color: #008833;
   color: #ffffff;
   margin-right: 20px;
@@ -87,11 +95,18 @@ button:hover {
   color: #008833;
 }
 
+.wrapper-horarios {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
 #horariosP {
   text-align: center;
 }
 #horarios {
-  width: 60%;
+  width: 90%;
 }
 
 .horarios > div {
@@ -132,6 +147,10 @@ button:hover {
   color: #b4b3b3;
 }
 
+.info {
+  margin-bottom: 40px;
+}
+
 .info h2 {
   color: #008833;
   text-align: center;
@@ -162,8 +181,9 @@ button:hover {
 
 input[type="text"] {
   width: 100%;
+  height: 50px;
   padding: 5px 5px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   box-sizing: border-box;
   border: 1px solid #008833;
   background: #fff;
@@ -174,6 +194,10 @@ input[type="text"] {
 
 input[type="text"]:focus {
   outline: none;
+}
+
+.inputs {
+  width: 90%;
 }
 
 .inputs p {
@@ -236,12 +260,52 @@ input[type="text"]:focus {
   margin-bottom: 10px;
 }
 
-#right-img {
-  position: absolute;
-  right: 0;
-  top: 95px;
+.container-pago .info h3 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  margin: 0;
+  color: #008833;
 }
 
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.info .keys {
+  color: #979797;
+}
+
+#precio {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  margin-top: 0;
+}
+
+#pagar_btn {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.info-conekta p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #979797;
+}
+
+.last-p {
+  margin-top: 50px;
+}
+
+#formulario_btn {
+  background-color: WHITE;
+}
 /* #_1 { animation: bloque 0.5s forwards infinite; }
 #_2 { animation: disco 0.5s 0.1s forwards infinite; }
 #_3 { animation: bloque 0.5s 0.2s forwards infinite; }
@@ -289,6 +353,70 @@ input[name="foo"] {
   font-size: 18px;
 }
 
+footer {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 10vh;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  padding-bottom: 50px;
+}
+
+#right-img {
+  position: absolute;
+  right: 0;
+  top: 95px;
+  z-index: -2;
+}
+
+.social-media {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.info_cita {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info_cita h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #008833;
+  margin-top: 0;
+}
+
+.info_cita p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #979797;
+}
+.formulario {
+  width: 60%;
+  text-align: center;
+}
+
+.info-confirmacion {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.info {
+  width: 60%;
+}
+
 @media (min-width: 992px) {
   #logo {
     width: 80%;
@@ -309,7 +437,7 @@ input[name="foo"] {
   .container {
     padding: 20px 0px;
     width: 50%;
-    max-width: 500px;
+    max-width: 600px;
     height: auto;
     min-height: 500px;
     background: #ffffff;
@@ -317,12 +445,22 @@ input[name="foo"] {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: flex-start;
   }
 
   .container-pago {
     height: auto;
   }
+
+  .header {
+    width: 80%;
+    justify-content: center;
+  }
   .inputs {
+    width: 60%;
+  }
+
+  #horarios {
     width: 60%;
   }
 }
