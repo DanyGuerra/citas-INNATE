@@ -64,7 +64,10 @@ app.get("/citas/pagos/", (req, res) => {
 });
 
 app.get("/citas/pagos/confirmacion", (req, res) => {
-  res.render("confirmacion", { titulo: "My page" });
+  const order_id = req.query.orderId;
+  if (order_id) {
+    res.render("confirmacion", { titulo: "My page" });
+  }
 });
 
 app.listen(3000, () => {

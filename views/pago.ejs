@@ -25,16 +25,19 @@
       <img id="_7" src="/citas/public/img/SVG/Recurso 1.svg" />
     </div>
 
-    <div class="modal" id="modal">
+    <div class="modal" id="modal-error">
       <div id="modal_content">
-        <p id="modal_text"></p>
-        <button id="modalBtn">CERRAR</button>
+        <h3 class="error-header">Error</h3>
+        <p>Tu tarjeta ha sido declinada</p>
+        <div id="modalBtnError">
+          <img src="/citas/public/img/SVG/close-button.svg" alt="Close Butto" />
+        </div>
       </div>
     </div>
 
     <main>
       <div class="logo-header">
-        <a href="https://innate.mx/" target="_blank">
+        <a href="https://innate.mx/">
           <img id="logo" src="/citas/public/img/logo.png" alt="" />
         </a>
       </div>
@@ -92,7 +95,7 @@
             />
           </div>
           <div class="contra">
-            <input type="text" placeholder="Contraseña" />
+            <input type="password" placeholder="Contraseña" />
           </div>
           <div class="tel">
             <input type="text" id="telefono" required placeholder="Teléfono" />
@@ -110,11 +113,11 @@
     </main>
     <img id="right-img" src="/citas/public/img/side-img.png" alt="" />
     <footer>
-      <div>
+      <div class="logos">
         <img src="/citas/public/img/logo-l-footer1.png" alt="" />
         <img src="/citas/public/img/logo-l-footer2.png" alt="" />
       </div>
-      <div>
+      <div class="marca">
         <p>INNATE &reg 2022 &middot Aviso de Privacidad</p>
       </div>
       <div class="social-media">

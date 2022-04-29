@@ -1,14 +1,17 @@
 const loader = document.getElementById("preloader_container");
 const pagarBtn = document.getElementById("pagar_btn");
 const modal = document.getElementById("modal");
-const modalBtn = document.getElementById("modalBtn");
+const modalError = document.getElementById("modal-error");
+const modalBtn = document.getElementById("modalBtnError");
 const modalText = document.getElementById("modal_text");
+const modalTextError = document.getElementById("modal_text_error");
 
 let privateKey = "Bearer key_ixHyfwR1QKEtuCP8qXbVDQ";
 let publicKey = "key_Er9ywVWsJu2nfsUPM6Zksyw";
 
 modalBtn.addEventListener("click", async (e) => {
-  modal.style.display = "none";
+  // modal.style.display = "none";
+  modalError.style.display = "none";
 });
 
 pagarBtn.addEventListener("click", async (e) => {
@@ -24,9 +27,9 @@ pagarBtn.addEventListener("click", async (e) => {
     const datosOrden = obtenerDatosOrden();
     const reciboPagado = await pagar(token, datosOrden);
     // showModal("Pago realizado" + reciboPagado.payment_status);
-    confirmacion();
+    confirmacion(reciboPagado);
   } catch (error) {
-    showModal("Pago rechazado \n" + error.message);
+    showModalError("Pago rechazado \n" + error.message);
     // alert("Hubo un error con tu pago verifica tus datos o intentalo mas tarde");
   }
 });
@@ -37,10 +40,19 @@ function showModal(message) {
   modalText.innerText = message;
 }
 
-function confirmacion() {
+function showModalError(message) {
   loader.style.display = "none";
-  modal.style.display = "flex";
-  window.location.href = "http://localhost:3000/citas/pagos/confirmacion";
+  modalError.style.display = "flex";
+  modalTextError.innerText = message;
+}
+function confirmacion(recibo) {
+  loader.style.display = "none";
+  modal.style.display = "none";
+
+  const order_id = recibo.id;
+  console.log(order_id);
+
+  window.location.href = `http://localhost:3000/citas/pagos/confirmacion?orderId=${order_id}`;
 }
 
 function getToken(resolve, reject) {
