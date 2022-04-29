@@ -351,6 +351,10 @@ input[type="password"]:focus {
   margin-bottom: 0;
 }
 
+.info-conekta {
+  text-align: center;
+}
+
 .info-conekta p {
   font-weight: 400;
   font-size: 12px;

@@ -1,3 +1,5 @@
+require("dotenv").config();
+const nodemailer = require("nodemailer");
 const express = require("express");
 const app = express();
 const path = require("path");
@@ -66,6 +68,29 @@ app.get("/citas/pagos/", (req, res) => {
 app.get("/citas/pagos/confirmacion", (req, res) => {
   const order_id = req.query.orderId;
   if (order_id) {
+    let transport = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL,
+        pass: process.env.PASSWORD,
+      },
+    });
+
+    let mailOptions = {
+      from: '"Example Team" <from@example.com>',
+      to: "luisdanyramirez@hotmail.com",
+      subject: "Cita agendada",
+      text: "Confirmacion de cita",
+      html: `<b>Hola!! </b><br> Tu cita ha sido agendada con exito.<br />El id de tu cita es <b>${order_id}</b>`,
+    };
+
+    transport.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return console.log(error);
+      }
+
+      console.log("Message sent: %s", info.messageId);
+    });
     res.render("confirmacion", { titulo: "My page" });
   }
 });
