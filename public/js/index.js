@@ -68,13 +68,22 @@ const datepicker = new Datepicker(calendario, {
   language: "es",
 });
 
+const HOST = location.protocol + "//" + location.host;
 let mes = "";
 let fecha = "";
+let sucursal = "";
 let horariosLlenos = false;
 let btnAgregar = false;
 let animation = false;
 let setAnimationInterval = null;
 let deleteAnimationInterval = null;
+
+const sucursalSelect = document.getElementById("sucursal");
+const selectSelected = document.getElementsByClassName("select-selected")[0];
+
+selectSelected.addEventListener("click", () => {
+  sucursal = selectSelected.innerHTML;
+});
 
 calendario.addEventListener("changeDate", () => {
   fecha = datepicker.getDate("dd/mm/yyyy");
@@ -121,7 +130,11 @@ function setHorarios() {
 
   console.log(fecha);
   // para entonces la variable fecha ya tiene un valor
+<<<<<<< HEAD
   fetch(`http://localhost:5500/api/horarios?fecha=${fecha}`)
+=======
+  fetch(`${HOST}/citas/api/horarios?fecha=${fecha}`)
+>>>>>>> checkout-token
     .then((response) => response.json())
     .then((horariosData) => {
       // console.log(horariosData.length)
@@ -130,6 +143,9 @@ function setHorarios() {
           let key = Object.keys(horario).toString();
           let hora = key.slice(0, -6);
           // corto los últimos seis carácteres porque el resultado de obtener las keys es "N,fecha", donde N es la hora
+
+          const titleHour = document.getElementById("title-hora");
+          titleHour.style.display = "block   ";
 
           const opcHorario = document.createElement("div");
 
@@ -218,7 +234,12 @@ function addButtonAgendar() {
     const horarios = document.getElementsByClassName("horario_active");
     if (horarios.length == 0) console.log("no se ha seleccionado un horario");
     // creo que debe haber una mejor opción para pasar el parámetro de mes a la siguiente página, porque se podría sustituir el mes fácilmente.
+<<<<<<< HEAD
     else window.location.href = "http://localhost:5500/pago";
+=======
+    else
+      window.location.href = `${HOST}/citas/pagos?fecha=${fecha}&sucursal=${sucursal}`;
+>>>>>>> checkout-token
   });
 
   btnAgregar = true;

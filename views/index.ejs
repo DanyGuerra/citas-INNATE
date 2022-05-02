@@ -4,61 +4,105 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/custom-select.css" />
-    <link rel="stylesheet" href="css/datepicker.css" />
+    <link rel="stylesheet" type="text/css" href="/citas/public/css/style.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/citas/public/css/custom-select.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="/citas/public/css/datepicker.css"
+    />
     <title>Agendar cita</title>
   </head>
 
   <body>
-    <!-- <h1><%= titulo %></h1> -->
+    <!--<h1><%= titulo %></h1>-->
     <div id="preloader_container" class="modal">
-      <img id="_1" src="img/SVG/Recurso 1.svg" />
-      <img id="_2" src="img/SVG/Recurso 3.svg" />
-      <img id="_3" src="img/SVG/Recurso 1.svg" />
-      <img id="_4" src="img/SVG/Recurso 3.svg" />
-      <img id="_5" src="img/SVG/Recurso 1.svg" />
-      <img id="_6" src="img/SVG/Recurso 3.svg" />
-      <img id="_7" src="img/SVG/Recurso 1.svg" />
+      <img id="_1" src="/citas/public/img/SVG/Recurso 1.svg" />
+      <img id="_2" src="/citas/public/img/SVG/Recurso 3.svg" />
+      <img id="_3" src="/citas/public/img/SVG/Recurso 1.svg" />
+      <img id="_4" src="/citas/public/img/SVG/Recurso 3.svg" />
+      <img id="_5" src="/citas/public/img/SVG/Recurso 1.svg" />
+      <img id="_6" src="/citas/public/img/SVG/Recurso 3.svg" />
+      <img id="_7" src="/citas/public/img/SVG/Recurso 1.svg" />
     </div>
-    <img id="logo" src="/img/logo.png" alt="" />
-    <div id="container" class="container">
-      <div class="header">
-        <div class="number">
-          <p>1</p>
-        </div>
-        <p>Elige tu sucursal</p>
+
+    <main>
+      <div class="logo-header">
+        <a href="https://innate.mx/">
+          <img id="logo" src="/citas/public/img/logo.png" alt="" />
+        </a>
       </div>
-      <div class="inputs">
-        <div class="custom-select" style="width: 100%">
-          <select name="sucursal" id="sucursal">
-            <option value="">DEL VALLE</option>
-            <option value="">JUAREZ/ROMA</option>
-            <option value="">SANTA FE</option>
-            <option value="">POLANCO</option>
-            <option value="">PEDREGAL</option>
-            <option value="">METEPEC</option>
-            <option value="">CUERNAVACA</option>
-            <option value="">MTY</option>
-            <option value="">GLD</option>
-            <option value="">PUEBLA</option>
-            <option value="">QRO</option>
-          </select>
+      <h1>Agenda tu cita</h1>
+      <div id="container" class="container">
+        <div class="header">
+          <div class="number">
+            <p>1</p>
+          </div>
+          <p>Selecciona sucursal y fecha de tu cita</p>
         </div>
-        <input
-          type="text"
-          name="foo"
-          id="fecha"
-          placeholder="Seleccione una fecha"
-          readonly
-        />
+        <div class="inputs">
+          <div class="custom-select" style="width: 100%">
+            <select name="sucursal" id="sucursal">
+              <option value="">Sucursal</option>
+              <option value="Del Valle">Del Valle</option>
+              <option value="Roma">Roma</option>
+              <option value="Santa Fe">Santa Fe</option>
+              <option value="Polanco">Polanco</option>
+              <option value="Pedregal">Pedregal</option>
+              <option value="Metepec">Metepec</option>
+              <option value="Cuernavaca">Cuernavaca</option>
+              <option value="Monterrey">Monterrey</option>
+              <option value="Guadalajara">Guadalajara</option>
+              <option value="Puebla">Puebla</option>
+              <option value="Querétaro">Querétaro</option>
+            </select>
+          </div>
+          <input
+            type="text"
+            name="foo"
+            id="fecha"
+            placeholder="DD / MM/ AAA"
+            readonly
+          />
+        </div>
+        <!-- <p id="horariosP">Horarios</p> -->
+        <div id="horarios" class="horarios">
+          <p id="title-hora">Horarios disponibles</p>
+        </div>
+        <!-- <button id="agendar_btn">AGENDAR</button> -->
       </div>
-      <p id="horariosP">Horarios</p>
-      <div id="horarios" class="horarios"></div>
-      <!-- <button id="agendar_btn">AGENDAR</button> -->
-    </div>
+    </main>
+    <img id="right-img" src="/citas/public/img/side-img.png" alt="" />
+    <footer>
+      <div class="logos">
+        <img src="/citas/public/img/logo-l-footer1.png" alt="" />
+        <img src="/citas/public/img/logo-l-footer2.png" alt="" />
+      </div>
+      <div class="marca">
+        <p>INNATE &reg 2022 &middot Aviso de Privacidad</p>
+      </div>
+      <div class="social-media">
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-fb.png" alt="" />
+        </a>
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-ig.png" alt="" />
+        </a>
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-tk.png" alt="" />
+        </a>
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-yt.png" alt="" />
+        </a>
+      </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/vanillajs-datepicker@1.2.0/dist/js/datepicker.min.js"></script>
-    <script src="js/custom-select.js"></script>
-    <script src="js/index.js"></script>
+    <script src="/citas/public/js/custom-select.js"></script>
+    <script src="/citas/public/js/index.js"></script>
   </body>
 </html>

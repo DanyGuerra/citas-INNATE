@@ -1,11 +1,18 @@
 const loader = document.getElementById("preloader_container");
 const pagarBtn = document.getElementById("pagar_btn");
 const modal = document.getElementById("modal");
-const modalBtn = document.getElementById("modalBtn");
+const modalError = document.getElementById("modal-error");
+const modalBtn = document.getElementById("modalBtnError");
 const modalText = document.getElementById("modal_text");
+const modalTextError = document.getElementById("modal_text_error");
+const HOST = location.protocol + "//" + location.host;
+
+let privateKey = "Bearer key_ixHyfwR1QKEtuCP8qXbVDQ";
+let publicKey = "key_Er9ywVWsJu2nfsUPM6Zksyw";
 
 modalBtn.addEventListener("click", async (e) => {
-  modal.style.display = "none";
+  // modal.style.display = "none";
+  modalError.style.display = "none";
 });
 
 pagarBtn.addEventListener("click", async (e) => {
@@ -20,9 +27,12 @@ pagarBtn.addEventListener("click", async (e) => {
     const token = await new Promise(getToken);
     const datosOrden = obtenerDatosOrden();
     const reciboPagado = await pagar(token, datosOrden);
-    showModal("Pago realizado \n" + reciboPagado.payment_status);
+    console.log(reciboPagado);
+    // showModal("Pago realizado" + reciboPagado.payment_status);
+    confirmacion(reciboPagado);
   } catch (error) {
-    showModal("Pago rechazado \n" + error.message);
+    console.error(error);
+    showModalError("Pago rechazado");
     // alert("Hubo un error con tu pago verifica tus datos o intentalo mas tarde");
   }
 });
@@ -30,7 +40,19 @@ pagarBtn.addEventListener("click", async (e) => {
 function showModal(message) {
   loader.style.display = "none";
   modal.style.display = "flex";
-  modalText.innerText = message;
+}
+
+function showModalError(message) {
+  loader.style.display = "none";
+  modalError.style.display = "flex";
+}
+function confirmacion(recibo) {
+  loader.style.display = "none";
+
+  const order_id = recibo.id;
+  console.log(order_id);
+
+  window.location.href = `${HOST}/citas/pagos/confirmacion?orderId=${order_id}`;
 }
 
 function getToken(resolve, reject) {
@@ -60,7 +82,7 @@ function getToken(resolve, reject) {
   }
 
   //Definir la llave ppublica dependiendo de la sucursal
-  Conekta.setPublicKey("key_B7QGT6NdLs9hxU9i1vdUyrA");
+  Conekta.setPublicKey(publicKey);
   Conekta.Token.create(data, successToken, errorToken);
 }
 
@@ -73,7 +95,7 @@ const pagar = function (token, datosOrden) {
         headers: {
           //Definir llave privada dependiendo de la sucursal
           // "Access-Control-Allow-Origin": "http://127.0.0.1:5500/INNATE/pago.html",
-          Authorization: "Bearer key_eG5Zy3hggDsb3XLzWr1GKg",
+          Authorization: privateKey,
           Accept: "application/vnd.conekta-v2.0.0+json",
           "Content-Type": "application/json",
         },
@@ -99,13 +121,9 @@ const pagar = function (token, datosOrden) {
       const client = await createClient.json();
       const opcionesCrearOrden = {
         method: "POST",
-        // mode: "no-cors",
         headers: {
-          // "Access-Control-Allow-Origin":
-          //   "http://127.0.0.1:5500/INNATE/pago.html",
-
           //Definir llave privada dependiendo de la sucursal
-          Authorization: "Bearer key_eG5Zy3hggDsb3XLzWr1GKg",
+          Authorization: privateKey,
           Accept: "application/vnd.conekta-v2.0.0+json",
           "Content-Type": "application/json",
         },
@@ -192,18 +210,18 @@ function obtenerDatosOrden() {
 }
 
 // esta función se ejecuta al cargar la página de pago para obtener el precio del mes, previamente seleccionado
-function setPrecio() {
-  const url_string = window.location.href;
-  const url = new URL(url_string);
-  const param = url.searchParams.get("mes");
+// function setPrecio() {
+//   const url_string = window.location.href;
+//   const url = new URL(url_string);
+//   const param = url.searchParams.get("mes");
 
-  fetch("http://localhost:3000/precioMes?id=" + param)
-    .then((response) => response.json())
-    .then((data) => {
-      document.getElementById("precio").innerText = data[0].precio;
-      document.getElementById("mes").innerText = data[0].mes.toUpperCase();
-    });
-}
+//   fetch("http://localhost:3000/precioMes?id=" + param)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       document.getElementById("precio").innerText = data[0].precio;
+//       document.getElementById("mes").innerText = data[0].mes.toUpperCase();
+//     });
+// }
 
 //Amnimation
 function setAnimation() {

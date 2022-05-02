@@ -71,6 +71,22 @@
   padding: 0.375rem 0.75rem;
   text-align: center;
 }
+#fecha {
+  padding-left: 20px;
+  font-weight: 400;
+  font-size: 16px;
+  background-color: #fff;
+  color: black;
+  background-image: url(/citas/public/img/SVG/icono-calendar.svg);
+  background-size: 1rem;
+  background-position: right 1rem top 0.8rem;
+  background-repeat: no-repeat;
+}
+
+#fecha::placeholder {
+  color: black;
+}
+
 .datepicker-header .datepicker-controls {
   padding: 2px 2px 0;
 }
@@ -259,5 +275,5 @@
 }
 
 .day {
-    color: #008833;
+  color: #008833;
 }

@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/custom-select.css" />
+    <link rel="stylesheet" href="/citas/public/css/style.css" />
+    <link rel="stylesheet" href="/citas/public/css/custom-select.css" />
 
     <script
       type="text/javascript"
@@ -14,6 +14,7 @@
     <title>Pago</title>
   </head>
 
+<<<<<<< HEAD
   <body onload="setPrecio()">
     <div class="modal" id="modal">
       <div id="modal_content">
@@ -35,59 +36,132 @@
       <div class="header">
         <div class="number">
           <p>2</p>
-        </div>
-        <p>Pago</p>
-      </div>
-      <div class="info">
-        <h2 id="precio">$1,499.00</h2>
-        <div class="values">
-          <p>DEL VALLE</p>
-          <p id="mes">MARZO</p>
-        </div>
-        <div class="keys">
-          <p>SUCURSAL</p>
-          <p>MES</p>
-        </div>
-      </div>
-      <div class="inputs">
-        <div class="correo">
-          <p>Correo electrónico</p>
-          <input type="text" id="correo" required />
-        </div>
-        <!-- <div class="contra">
-          <p>Contraseña</p>
-          <input type="text" />
-        </div> -->
-        <div class="tel">
-          <p>Teléfono</p>
-          <input type="text" id="telefono" required />
-        </div>
-        <div class="nombre">
-          <p>Nombre</p>
-          <input type="text" id="tarjetahabiente" required />
-        </div>
-        <div class="num_tarjtea">
-          <p>Número de tarjeta</p>
-          <input type="text" id="numero" />
-        </div>
-        <div class="datos_tarjeta">
-          <div class="mes">
-            <p>Mes</p>
-            <input type="text" id="exp-mes" required />
-          </div>
-          <div class="year">
-            <p>Año</p>
-            <input type="text" id="exp-ano" required />
-          </div>
-          <div class="cvv">
-            <p>CVV</p>
-            <input type="text" id="cvc" required />
-          </div>
-        </div>
-      </div>
-      <button id="pagar_btn">PAGAR</button>
+=======
+  <!-- <body onload="setPrecio()"> -->
+  <body>
+    <div id="preloader_container" class="modal">
+      <img id="_1" src="/citas/public/img/SVG/Recurso 1.svg" />
+      <img id="_2" src="/citas/public/img/SVG/Recurso 3.svg" />
+      <img id="_3" src="/citas/public/img/SVG/Recurso 1.svg" />
+      <img id="_4" src="/citas/public/img/SVG/Recurso 3.svg" />
+      <img id="_5" src="/citas/public/img/SVG/Recurso 1.svg" />
+      <img id="_6" src="/citas/public/img/SVG/Recurso 3.svg" />
+      <img id="_7" src="/citas/public/img/SVG/Recurso 1.svg" />
     </div>
+
+    <div class="modal" id="modal-error">
+      <div id="modal_content">
+        <h3 class="error-header">Error</h3>
+        <p>Tu tarjeta ha sido declinada</p>
+        <div id="modalBtnError">
+          <img src="/citas/public/img/SVG/close-button.svg" alt="Close Butto" />
+>>>>>>> checkout-token
+        </div>
+      </div>
+    </div>
+
+    <main>
+      <div class="logo-header">
+        <a href="https://innate.mx/">
+          <img id="logo" src="/citas/public/img/logo.png" alt="" />
+        </a>
+      </div>
+      <h1>Agenda tu cita</h1>
+      <div class="container container-pago">
+        <div class="header">
+          <div class="number">
+            <p>2</p>
+          </div>
+          <p>Formulario para el pago de tu cita</p>
+        </div>
+        <div class="info">
+          <h3>El costo de tu cita es de:</h3>
+          <h2 id="precio">$1,499.00</h2>
+          <div class="values">
+            <p><%= sucursal%></p>
+            <p id="mes"><%= fecha%></p>
+          </div>
+          <div class="keys">
+            <p>SUCURSAL</p>
+            <p>FECHA</p>
+          </div>
+        </div>
+        <div class="inputs">
+          <div class="nombre">
+            <input
+              type="text"
+              id="tarjetahabiente"
+              required
+              placeholder="Nombre"
+            />
+          </div>
+          <div class="num_tarjtea">
+            <input type="text" id="numero" placeholder="Número de tarjeta" />
+          </div>
+
+          <div class="datos_tarjeta">
+            <div class="mes">
+              <input type="text" id="exp-mes" required placeholder="MM" />
+            </div>
+            <div class="year">
+              <input type="text" id="exp-ano" required placeholder="YYYY" />
+            </div>
+            <div class="cvv">
+              <input type="text" id="cvc" required placeholder="CVV" />
+            </div>
+          </div>
+
+          <div class="correo">
+            <input
+              type="text"
+              id="correo"
+              required
+              placeholder="Correo Electrónico"
+            />
+          </div>
+          <div class="contra">
+            <input type="password" placeholder="Contraseña" />
+          </div>
+          <div class="tel">
+            <input type="text" id="telefono" required placeholder="Teléfono" />
+          </div>
+        </div>
+        <button id="pagar_btn">PAGAR</button>
+        <div class="info-conekta">
+          <p>Al ingresar tus datos, aceptas los términos y condiciones</p>
+          <p class="last-p">
+            Para procesar tu pago contamos con la herramienta
+          </p>
+          <img src="/citas/public/img/logo-conekta.png" alt="" />
+        </div>
+      </div>
+    </main>
+    <img id="right-img" src="/citas/public/img/side-img.png" alt="" />
+    <footer>
+      <div class="logos">
+        <img src="/citas/public/img/logo-l-footer1.png" alt="" />
+        <img src="/citas/public/img/logo-l-footer2.png" alt="" />
+      </div>
+      <div class="marca">
+        <p>INNATE &reg 2022 &middot Aviso de Privacidad</p>
+      </div>
+      <div class="social-media">
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-fb.png" alt="" />
+        </a>
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-ig.png" alt="" />
+        </a>
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-tk.png" alt="" />
+        </a>
+        <a href="https://innate.mx/" target="_blank">
+          <img src="/citas/public/img/INNATE-yt.png" alt="" />
+        </a>
+      </div>
+    </footer>
+
     <!-- <script src="js/pago.js"></script> -->
-    <script src="js/pago-conekta.js"></script>
+    <script src="/citas/public/js/pago-conekta.js"></script>
   </body>
 </html>

@@ -5,8 +5,24 @@ body {
   font-family: "Roboto Condensed", sans-serif;
   margin: 0;
 }
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 20px;
+}
+
 h1 {
+  font-family: "Playfair Display";
   font-size: 3.5rem;
+  margin-top: 0;
+  text-align: center;
+  color: #008833;
+  font-weight: 700;
+  font-size: 40px;
+  line-height: 53px;
 }
 h2 {
   font-size: 2rem;
@@ -28,23 +44,42 @@ p {
 }
 
 #logo {
-  max-width: 75%;
+  width: 75%;
+  max-width: 300px;
   height: auto;
   margin: 20px 0px 20px 30px;
 }
+.logo-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
 .container {
-  margin: 0px 30px;
+  margin: 0px auto;
+  background: #ffffff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 20px 0px;
+  max-width: 600px;
+  height: auto;
+  min-height: 500px;
 }
 
 .header {
   display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 90%;
   margin-bottom: 30px;
 }
 
 .number {
   width: 50px;
-  border-radius: 100%;
+  border-radius: 50%;
   background-color: #008833;
   color: #ffffff;
   margin-right: 20px;
@@ -59,12 +94,14 @@ button {
   background: #008833;
   color: #fffcf2;
   border-radius: 50px;
-  width: 100%;
-  font-size: 24px;
+  width: 60%;
   font-family: "Roboto Condensed", sans-serif;
   border: none;
   padding: 10px;
   margin-bottom: 15px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
 }
 
 button:hover {
@@ -77,8 +114,18 @@ button:hover {
   color: #008833;
 }
 
+.wrapper-horarios {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+}
+
 #horariosP {
   text-align: center;
+}
+#horarios {
+  width: 90%;
 }
 
 .horarios > div {
@@ -104,10 +151,23 @@ button:hover {
   cursor: pointer;
 }
 
+#title-hora {
+  text-align: center;
+  display: none;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  color: #000000;
+}
+
 .disable {
-  border: 1px solid #313131;
-  background-color: #525252;
+  border: 1px solid #9a9a9a;
+  background-color: #e6e8ea;
   color: #b4b3b3;
+}
+
+.info {
+  margin-bottom: 40px;
 }
 
 .info h2 {
@@ -138,20 +198,27 @@ button:hover {
   font-size: 0.75rem;
 }
 
-input[type="text"] {
+input[type="text"],
+input[type="password"] {
   width: 100%;
+  height: 50px;
   padding: 5px 5px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   box-sizing: border-box;
   border: 1px solid #008833;
-  background: #fffcf2;
+  background: #fff;
   font-size: 20px;
   color: #008833;
   font-family: "Roboto Condensed", sans-serif;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus,
+input[type="password"]:focus {
   outline: none;
+}
+
+.inputs {
+  width: 90%;
 }
 
 .inputs p {
@@ -199,7 +266,7 @@ input[type="text"]:focus {
   height: 100vh;
   width: 100vw;
   background-color: rgba(0, 0, 0, 0.75);
-  z-index: 2;
+  z-index: 10;
 }
 
 .modal > img:nth-child(odd) {
@@ -214,6 +281,94 @@ input[type="text"]:focus {
   margin-bottom: 10px;
 }
 
+#modal-error #modal_content {
+  padding-bottom: 50px;
+  width: 50%;
+  height: 30vh;
+  border-radius: 0;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  position: relative;
+}
+
+#modal_content .error-header {
+  font-family: "Playfair Display";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 45px;
+  line-height: 60px;
+  color: #c20f0f;
+}
+
+#modal_content p {
+  font-family: "Roboto Condensed";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+#modal_content #modalBtnError {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+#modal_content #modalBtnError:hover {
+  cursor: pointer;
+}
+
+.container-pago .info h3 {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  margin: 0;
+  color: #008833;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+
+.info .keys {
+  color: #979797;
+}
+
+#precio {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 28px;
+  margin-top: 0;
+}
+
+#pagar_btn {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.info-conekta {
+  text-align: center;
+}
+
+.info-conekta p {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #979797;
+}
+
+.last-p {
+  margin-top: 50px;
+}
+
+#formulario_btn {
+  background-color: WHITE;
+}
 /* #_1 { animation: bloque 0.5s forwards infinite; }
 #_2 { animation: disco 0.5s 0.1s forwards infinite; }
 #_3 { animation: bloque 0.5s 0.2s forwards infinite; }
@@ -259,4 +414,125 @@ input[name="foo"] {
 #modal_content > button {
   width: 50%;
   font-size: 18px;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10vh;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  padding-bottom: 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+footer .logos {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+footer .marca {
+  order: 2;
+}
+
+#right-img {
+  position: absolute;
+  right: 0;
+  top: 95px;
+  z-index: -2;
+}
+
+.social-media {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+.info_cita {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.info_cita h3 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  color: #008833;
+  margin-top: 0;
+}
+
+.info_cita p {
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #979797;
+}
+.formulario {
+  width: 60%;
+  text-align: center;
+}
+
+.info-confirmacion {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.info {
+  width: 60%;
+}
+
+@media (min-width: 992px) {
+  #logo {
+    width: 80%;
+    height: auto;
+  }
+
+  h1 {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 60px;
+  }
+
+  .container {
+    width: 50%;
+  }
+
+  .container-pago {
+    height: auto;
+  }
+
+  .header {
+    width: 80%;
+    justify-content: center;
+  }
+  .inputs {
+    width: 60%;
+  }
+
+  #horarios {
+    width: 60%;
+  }
+  footer {
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  footer .logos {
+    flex-direction: row;
+    gap: 30px;
+  }
+  footer .marca {
+    order: 0;
+  }
 }
