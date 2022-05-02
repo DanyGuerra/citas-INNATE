@@ -4,6 +4,10 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const PORT = process.env.PORT || 5000;
+var bodyParser = require("body-parser");
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const datos = {
   horarios: [
@@ -50,6 +54,7 @@ app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "/views"));
 
 app.use("/citas/public", express.static(process.cwd() + "/public"));
+app;
 
 app.get("/", (req, res) => {
   res.send("Welcome");
@@ -73,8 +78,24 @@ app.get("/citas/pagos/", (req, res) => {
 });
 
 app.get("/citas/pagos/confirmacion", (req, res) => {
-  const order_id = req.query.orderId;
-  if (order_id) {
+  res.render("confirmacion", { titulo: "My page" });
+});
+
+app.post("/citas/api/sendmail/", async (req, res) => {
+  const order_id = req.body.order_id;
+  const correo = req.body.correo;
+
+  try {
+    const mail = await sendMail(correo, order_id);
+    console.log(mail);
+    res.sendStatus(200);
+  } catch (error) {
+    res.sendStatus(400);
+  }
+});
+
+const sendMail = (email, order_id) => {
+  return new Promise((resolve, reject) => {
     let transport = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -85,7 +106,7 @@ app.get("/citas/pagos/confirmacion", (req, res) => {
 
     let mailOptions = {
       from: '"CITA INNATE" <from@example.com>',
-      to: "luisdanyramirez@hotmail.com",
+      to: email,
       subject: "Cita agendada",
       text: "Confirmacion de cita",
       html: `<b>Hola!! </b><br> Tu cita ha sido agendada con exito.<br />El id de tu cita es <b>${order_id}</b>`,
@@ -93,15 +114,14 @@ app.get("/citas/pagos/confirmacion", (req, res) => {
 
     transport.sendMail(mailOptions, (error, info) => {
       if (error) {
-        return console.log(error);
+        reject(error);
+      } else {
+        resolve(info);
       }
-
-      console.log("Message sent: %s", info.messageId);
     });
-    res.render("confirmacion", { titulo: "My page" });
-  }
-});
+  });
+};
 
 app.listen(PORT, () => {
-  console.log(`App running in: http://localhost:3000/citas/agendar`);
+  console.log(`App running in: http://localhost:5000/citas/agendar`);
 });

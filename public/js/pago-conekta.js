@@ -46,13 +46,34 @@ function showModalError(message) {
   loader.style.display = "none";
   modalError.style.display = "flex";
 }
-function confirmacion(recibo) {
-  loader.style.display = "none";
-
+async function confirmacion(recibo) {
+  let correo = document.getElementById("correo").value;
   const order_id = recibo.id;
-  console.log(order_id);
+  // window.location.href = `${HOST}/citas/pagos/confirmacion?orderId=${order_id}`;
 
-  window.location.href = `${HOST}/citas/pagos/confirmacion?orderId=${order_id}`;
+  try {
+    const mailSend = await fetch(`${HOST}/citas/api/sendmail/`, {
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      method: "POST",
+      body: JSON.stringify({
+        order_id,
+        correo,
+      }),
+    });
+
+    loader.style.display = "none";
+
+    if (mailSend.ok) {
+      window.location.href = `${HOST}/citas/pagos/confirmacion?orderId=${order_id}&sendMail=true`;
+    } else {
+      window.location.href = `${HOST}/citas/pagos/confirmacion?orderId=${order_id}&sendMail=false`;
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 function getToken(resolve, reject) {
