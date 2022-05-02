@@ -6,24 +6,24 @@ const path = require("path");
 
 const datos = {
   horarios: [
-    { fecha: "21/04/2022", 9: true },
-    { fecha: "21/04/2022", 10: true },
-    { fecha: "21/04/2022", 11: false },
-    { fecha: "21/04/2022", 12: true },
-    { fecha: "21/04/2022", 13: true },
-    { fecha: "21/04/2022", 14: false },
-    { fecha: "22/04/2022", 9: false },
-    { fecha: "22/04/2022", 10: true },
-    { fecha: "22/04/2022", 11: true },
-    { fecha: "22/04/2022", 12: false },
-    { fecha: "22/04/2022", 13: false },
-    { fecha: "22/04/2022", 14: true },
-    { fecha: "23/04/2022", 9: true },
-    { fecha: "23/04/2022", 10: true },
-    { fecha: "23/04/2022", 11: false },
-    { fecha: "23/04/2022", 12: false },
-    { fecha: "23/04/2022", 13: false },
-    { fecha: "23/04/2022", 14: true },
+    { fecha: "02/05/2022", 9: true },
+    { fecha: "02/05/2022", 10: true },
+    { fecha: "02/05/2022", 11: false },
+    { fecha: "02/05/2022", 12: true },
+    { fecha: "02/05/2022", 13: true },
+    { fecha: "02/05/2022", 14: false },
+    { fecha: "03/05/2022", 9: false },
+    { fecha: "03/05/2022", 10: true },
+    { fecha: "03/05/2022", 11: true },
+    { fecha: "03/05/2022", 12: false },
+    { fecha: "03/05/2022", 13: false },
+    { fecha: "03/05/2022", 14: true },
+    { fecha: "04/05/2022", 9: true },
+    { fecha: "04/05/2022", 10: true },
+    { fecha: "04/05/2022", 11: false },
+    { fecha: "04/05/2022", 12: false },
+    { fecha: "04/05/2022", 13: false },
+    { fecha: "04/05/2022", 14: true },
   ],
   precioMes: [
     { id: 1, mes: "enero", precio: "$1,000.00" },
@@ -62,7 +62,9 @@ app.get("/citas/agendar", (req, res) => {
 });
 
 app.get("/citas/pagos/", (req, res) => {
-  res.render("pago", { titulo: "My page" });
+  const sucursal = req.query.sucursal;
+  const fecha = req.query.fecha;
+  res.render("pago", { sucursal: sucursal.toUpperCase(), fecha: fecha });
 });
 
 app.get("/citas/pagos/confirmacion", (req, res) => {
@@ -77,7 +79,7 @@ app.get("/citas/pagos/confirmacion", (req, res) => {
     });
 
     let mailOptions = {
-      from: '"Example Team" <from@example.com>',
+      from: '"CITA INNATE" <from@example.com>',
       to: "luisdanyramirez@hotmail.com",
       subject: "Cita agendada",
       text: "Confirmacion de cita",

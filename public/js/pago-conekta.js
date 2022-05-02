@@ -5,6 +5,7 @@ const modalError = document.getElementById("modal-error");
 const modalBtn = document.getElementById("modalBtnError");
 const modalText = document.getElementById("modal_text");
 const modalTextError = document.getElementById("modal_text_error");
+const HOST = location.protocol + "//" + location.host;
 
 let privateKey = "Bearer key_ixHyfwR1QKEtuCP8qXbVDQ";
 let publicKey = "key_Er9ywVWsJu2nfsUPM6Zksyw";
@@ -26,10 +27,12 @@ pagarBtn.addEventListener("click", async (e) => {
     const token = await new Promise(getToken);
     const datosOrden = obtenerDatosOrden();
     const reciboPagado = await pagar(token, datosOrden);
+    console.log(reciboPagado);
     // showModal("Pago realizado" + reciboPagado.payment_status);
     confirmacion(reciboPagado);
   } catch (error) {
-    showModalError("Pago rechazado \n" + error.message);
+    console.error(error);
+    showModalError("Pago rechazado");
     // alert("Hubo un error con tu pago verifica tus datos o intentalo mas tarde");
   }
 });
@@ -37,22 +40,19 @@ pagarBtn.addEventListener("click", async (e) => {
 function showModal(message) {
   loader.style.display = "none";
   modal.style.display = "flex";
-  modalText.innerText = message;
 }
 
 function showModalError(message) {
   loader.style.display = "none";
   modalError.style.display = "flex";
-  modalTextError.innerText = message;
 }
 function confirmacion(recibo) {
   loader.style.display = "none";
-  modal.style.display = "none";
 
   const order_id = recibo.id;
   console.log(order_id);
 
-  window.location.href = `http://localhost:3000/citas/pagos/confirmacion?orderId=${order_id}`;
+  window.location.href = `${HOST}/citas/pagos/confirmacion?orderId=${order_id}`;
 }
 
 function getToken(resolve, reject) {
@@ -210,18 +210,18 @@ function obtenerDatosOrden() {
 }
 
 // esta función se ejecuta al cargar la página de pago para obtener el precio del mes, previamente seleccionado
-function setPrecio() {
-  const url_string = window.location.href;
-  const url = new URL(url_string);
-  const param = url.searchParams.get("mes");
+// function setPrecio() {
+//   const url_string = window.location.href;
+//   const url = new URL(url_string);
+//   const param = url.searchParams.get("mes");
 
-  fetch("http://localhost:3000/precioMes?id=" + param)
-    .then((response) => response.json())
-    .then((data) => {
-      document.getElementById("precio").innerText = data[0].precio;
-      document.getElementById("mes").innerText = data[0].mes.toUpperCase();
-    });
-}
+//   fetch("http://localhost:3000/precioMes?id=" + param)
+//     .then((response) => response.json())
+//     .then((data) => {
+//       document.getElementById("precio").innerText = data[0].precio;
+//       document.getElementById("mes").innerText = data[0].mes.toUpperCase();
+//     });
+// }
 
 //Amnimation
 function setAnimation() {
