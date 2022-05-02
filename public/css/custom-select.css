@@ -13,15 +13,20 @@
 }
 
 .select-selected {
+  box-sizing: border-box;
   background-color: #fff;
-  height: 30px;
+  height: 50px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  background-image: url(/citas/public/img/SVG/arrow-dropdown.svg);
+  background-size: 1rem;
+  background-position: right 1rem top 1.2rem;
+  background-repeat: no-repeat;
 }
 
 /* Style the arrow inside the select element: */
-.select-selected:after {
+/* .select-selected:after {
   position: absolute;
   content: "";
   top: 20px;
@@ -33,10 +38,10 @@
 }
 
 /* Point the arrow upwards when the select box is open (active): */
-.select-selected.select-arrow-active:after {
+/* .select-selected.select-arrow-active:after {
   border-color: transparent transparent #008833 transparent;
   top: 7px;
-}
+}  */
 
 /* style the items (options), including the selected item: */
 .select-items div,
