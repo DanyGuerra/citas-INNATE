@@ -3,6 +3,7 @@ const nodemailer = require("nodemailer");
 const express = require("express");
 const app = express();
 const path = require("path");
+const PORT = process.env.PORT || 5000;
 
 const datos = {
   horarios: [
@@ -101,6 +102,6 @@ app.get("/citas/pagos/confirmacion", (req, res) => {
   }
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log(`App running in: http://localhost:3000/citas/agendar`);
 });
