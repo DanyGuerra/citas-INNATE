@@ -50,6 +50,10 @@ app.set("views", path.join(__dirname, "/views"));
 
 app.use("/citas/public", express.static(process.cwd() + "/public"));
 
+app.get("/", (req, res) => {
+  res.send("Welcome");
+});
+
 app.get("/citas/api/horarios", (req, res) => {
   const fecha = req.query.fecha;
   const horarios = datos.horarios;
