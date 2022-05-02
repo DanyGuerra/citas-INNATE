@@ -130,11 +130,7 @@ function setHorarios() {
 
   console.log(fecha);
   // para entonces la variable fecha ya tiene un valor
-<<<<<<< HEAD
-  fetch(`http://localhost:5500/api/horarios?fecha=${fecha}`)
-=======
   fetch(`${HOST}/citas/api/horarios?fecha=${fecha}`)
->>>>>>> checkout-token
     .then((response) => response.json())
     .then((horariosData) => {
       // console.log(horariosData.length)
@@ -234,12 +230,8 @@ function addButtonAgendar() {
     const horarios = document.getElementsByClassName("horario_active");
     if (horarios.length == 0) console.log("no se ha seleccionado un horario");
     // creo que debe haber una mejor opción para pasar el parámetro de mes a la siguiente página, porque se podría sustituir el mes fácilmente.
-<<<<<<< HEAD
-    else window.location.href = "http://localhost:5500/pago";
-=======
     else
       window.location.href = `${HOST}/citas/pagos?fecha=${fecha}&sucursal=${sucursal}`;
->>>>>>> checkout-token
   });
 
   btnAgregar = true;
