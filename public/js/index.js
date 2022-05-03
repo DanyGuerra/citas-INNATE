@@ -221,7 +221,7 @@ function setListeners() {
 function addButtonAgendar() {
   const btn = document.createElement("button");
   btn.setAttribute("id", "agendar_btn");
-  btn.innerText = "AGENDAR";
+  btn.innerText = "SIGUIENTE";
 
   const container = document.getElementById("container");
   container.appendChild(btn);

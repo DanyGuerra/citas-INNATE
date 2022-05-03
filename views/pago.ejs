@@ -29,7 +29,7 @@
     <div class="modal" id="modal-error">
       <div id="modal_content">
         <h3 class="error-header">Error</h3>
-        <p>Tu tarjeta ha sido declinada</p>
+        <p id="error-message"></p>
         <div id="modalBtnError">
           <img src="/citas/public/img/SVG/close-button.svg" alt="Close Butto" />
         </div>
@@ -62,7 +62,7 @@
             <p>FECHA</p>
           </div>
         </div>
-        <div class="inputs">
+        <form class="inputs" id="pago-form">
           <div class="nombre">
             <input
               type="text"
@@ -96,13 +96,13 @@
             />
           </div>
           <div class="contra">
-            <input type="password" placeholder="Contraseña" />
+            <input type="password" placeholder="Contraseña" required />
           </div>
           <div class="tel">
-            <input type="text" id="telefono" required placeholder="Teléfono" />
+            <input type="text" id="telefono" placeholder="Teléfono" required />
           </div>
-        </div>
-        <button id="pagar_btn">PAGAR</button>
+          <button id="pagar_btn" type="submit">PAGAR</button>
+        </form>
         <div class="info-conekta">
           <p>Al ingresar tus datos, aceptas los términos y condiciones</p>
           <p class="last-p">

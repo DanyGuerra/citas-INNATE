@@ -5,6 +5,7 @@ const modalError = document.getElementById("modal-error");
 const modalBtn = document.getElementById("modalBtnError");
 const modalText = document.getElementById("modal_text");
 const modalTextError = document.getElementById("modal_text_error");
+const errorMessage = document.getElementById("error-message");
 const HOST = location.protocol + "//" + location.host;
 
 let privateKey = "Bearer key_ixHyfwR1QKEtuCP8qXbVDQ";
@@ -20,6 +21,8 @@ pagarBtn.addEventListener("click", async (e) => {
   document.getElementById("preloader_container").style.display = "flex";
   setAnimation();
 
+  document.getElementById("pago-form").checkValidity();
+
   deleteAnimationInterval = setInterval(deleteAnimation, 1100);
   setAnimationInterval = setInterval(setAnimation, 2200);
 
@@ -32,7 +35,7 @@ pagarBtn.addEventListener("click", async (e) => {
     confirmacion(reciboPagado);
   } catch (error) {
     console.error(error);
-    showModalError("Pago rechazado");
+    showModalError(error.message_to_purchaser);
     // alert("Hubo un error con tu pago verifica tus datos o intentalo mas tarde");
   }
 });
@@ -45,6 +48,7 @@ function showModal(message) {
 function showModalError(message) {
   loader.style.display = "none";
   modalError.style.display = "flex";
+  errorMessage.innerHTML = message;
 }
 async function confirmacion(recibo) {
   let correo = document.getElementById("correo").value;
