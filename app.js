@@ -118,6 +118,7 @@ const sendMail = (email, order_id) => {
 
     transport.sendMail(mailOptions, (error, info) => {
       if (error) {
+
         console.log(error);
         reject(error);
       } else {
