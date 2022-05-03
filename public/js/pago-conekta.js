@@ -16,27 +16,148 @@ modalBtn.addEventListener("click", async (e) => {
   modalError.style.display = "none";
 });
 
+const formPago = document.getElementById("pago-form");
+
+formPago.addEventListener("change", () => {
+  formValidation();
+});
+
 pagarBtn.addEventListener("click", async (e) => {
   e.preventDefault();
-  document.getElementById("preloader_container").style.display = "flex";
-  setAnimation();
 
-  deleteAnimationInterval = setInterval(deleteAnimation, 1100);
-  setAnimationInterval = setInterval(setAnimation, 2200);
+  const validation = formValidation();
+  if (validation === 0) {
+    document.getElementById("preloader_container").style.display = "flex";
+    setAnimation();
 
-  try {
-    const token = await new Promise(getToken);
-    const datosOrden = obtenerDatosOrden();
-    const reciboPagado = await pagar(token, datosOrden);
-    console.log(reciboPagado);
-    // showModal("Pago realizado" + reciboPagado.payment_status);
-    confirmacion(reciboPagado);
-  } catch (error) {
-    console.error(error);
-    showModalError(error.message_to_purchaser);
-    // alert("Hubo un error con tu pago verifica tus datos o intentalo mas tarde");
+    deleteAnimationInterval = setInterval(deleteAnimation, 1100);
+    setAnimationInterval = setInterval(setAnimation, 2200);
+
+    try {
+      const token = await new Promise(getToken);
+      const datosOrden = obtenerDatosOrden();
+      const reciboPagado = await pagar(token, datosOrden);
+      console.log(reciboPagado);
+      // showModal("Pago realizado" + reciboPagado.payment_status);
+      confirmacion(reciboPagado);
+    } catch (error) {
+      console.error(error);
+      showModalError(error.message_to_purchaser);
+      // alert("Hubo un error con tu pago verifica tus datos o intentalo mas tarde");
+    }
   }
 });
+
+function formValidation() {
+  let errors = 0;
+  const tarjetaHabiente = document.getElementById("tarjetahabiente");
+  const numeroTarjeta = document.getElementById("numerotarjeta");
+  const mes = document.getElementById("exp-mes");
+  const ano = document.getElementById("exp-ano");
+  const cvv = document.getElementById("cvc");
+  const email = document.getElementById("correo");
+  const contrasena = document.getElementById("contrasena");
+  const telefono = document.getElementById("telefono");
+
+  const tarjetaHabienteV = tarjetaHabiente.value.trim();
+  const numeroTarjetaV = numeroTarjeta.value.trim();
+  const mesV = mes.value.trim();
+  const anoV = ano.value.trim();
+  const cvvV = cvv.value.trim();
+  const emailV = email.value.trim();
+  const contrasenaV = contrasena.value.trim();
+  const telefonoV = telefono.value.trim();
+
+  if (tarjetaHabienteV === "" || null) {
+    setErrorFor(tarjetahabiente, "El Nombre es un valor requerido");
+    errors++;
+  } else {
+    setSuccessFor(tarjetahabiente);
+  }
+  if (numeroTarjetaV === "" || null) {
+    setErrorFor(numeroTarjeta, "El número de tarjeta es requerido");
+    errors++;
+  } else if (!isNumberValid(numeroTarjetaV)) {
+    setErrorFor(numeroTarjeta, "Número de tarjeta inválido");
+    errors++;
+  } else {
+    setSuccessFor(numeroTarjeta);
+  }
+
+  if (mesV === "" || null) {
+    setErrorFor(mes, "Mes requerido");
+    errors++;
+  } else if (mesV.length != 2) {
+    setErrorFor(mes, "Mes inválido");
+    errors++;
+  } else {
+    setSuccessFor(mes);
+  }
+  if (anoV === "" || null) {
+    setErrorFor(ano, "Año requerido");
+    errors++;
+  } else if (anoV.length != 4) {
+    setErrorFor(ano, "Año inválido");
+    errors++;
+  } else {
+    setSuccessFor(ano);
+  }
+
+  if (cvvV === "" || null) {
+    setErrorFor(cvv, "Código requerido");
+    errors++;
+  } else {
+    setSuccessFor(cvv);
+  }
+
+  if (emailV === "") {
+    setErrorFor(email, "El correo es obligatorio");
+    errors++;
+  } else if (!isEmail(emailV)) {
+    setErrorFor(email, "Correo inválido");
+    errors++;
+  } else {
+    setSuccessFor(email);
+  }
+
+  if (contrasenaV === "" || null) {
+    setErrorFor(contrasena, "Contraseña obligatoria");
+    errors++;
+  } else {
+    setSuccessFor(contrasena);
+  }
+  if (telefonoV === "" || null) {
+    setErrorFor(telefono, "Teléfono requerido");
+    errors++;
+  } else {
+    setSuccessFor(telefono);
+  }
+
+  return errors;
+}
+
+function setErrorFor(input, message) {
+  const formControl = input.parentElement;
+  const small = formControl.querySelector("small");
+  formControl.className = "form-control error";
+  small.innerText = message;
+}
+
+function setSuccessFor(input) {
+  const formControl = input.parentElement;
+  formControl.className = "form-control success";
+}
+
+function isEmail(email) {
+  return /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
+    email
+  );
+}
+
+function isNumberValid(number) {
+  const regex = /^[0-9]*$/;
+  return regex.test(number);
+}
 
 function showModal(message) {
   loader.style.display = "none";
@@ -80,7 +201,7 @@ async function confirmacion(recibo) {
 
 function getToken(resolve, reject) {
   let tarjetahabiente = document.getElementById("tarjetahabiente").value;
-  let numero = document.getElementById("numero").value;
+  let numero = document.getElementById("numerotarjeta").value;
   let cvc = document.getElementById("cvc").value;
   let expMes = document.getElementById("exp-mes").value;
   let expAno = document.getElementById("exp-ano").value;

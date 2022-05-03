@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="/citas/public/css/style.css" />
     <link rel="stylesheet" href="/citas/public/css/custom-select.css" />
-
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+      integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+      crossorigin="anonymous"
+    />
     <script
       type="text/javascript"
       src="https://cdn.conekta.io/js/v1.0.1/conekta.js"
@@ -63,43 +68,76 @@
           </div>
         </div>
         <form class="inputs" id="pago-form">
-          <div class="nombre">
+          <div class="nombre form-control">
+            <small>Error message</small>
             <input
               type="text"
               id="tarjetahabiente"
               required
               placeholder="Nombre"
             />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
           </div>
-          <div class="num_tarjtea">
-            <input type="text" id="numero" placeholder="Número de tarjeta" />
+          <div class="num_tarjtea form-control">
+            <small>Error message</small>
+            <input
+              type="text"
+              id="numerotarjeta"
+              placeholder="Número de tarjeta"
+            />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
           </div>
 
           <div class="datos_tarjeta">
-            <div class="mes">
+            <div class="mes form-control">
+              <small>Error message</small>
               <input type="text" id="exp-mes" required placeholder="MM" />
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
             </div>
-            <div class="year">
+            <div class="year form-control">
+              <small>Error message</small>
               <input type="text" id="exp-ano" required placeholder="YYYY" />
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
             </div>
-            <div class="cvv">
+            <div class="cvv form-control">
+              <small>Error message</small>
               <input type="text" id="cvc" required placeholder="CVV" />
+              <i class="fas fa-check-circle"></i>
+              <i class="fas fa-exclamation-circle"></i>
             </div>
           </div>
 
-          <div class="correo">
+          <div class="correo form-control">
+            <small>Error message</small>
             <input
               type="text"
               id="correo"
               required
               placeholder="Correo Electrónico"
             />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
           </div>
-          <div class="contra">
-            <input type="password" placeholder="Contraseña" required />
+          <div class="contra form-control">
+            <small>Error message</small>
+            <input
+              id="contrasena"
+              type="password"
+              placeholder="Contraseña"
+              required
+            />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
           </div>
-          <div class="tel">
+          <div class="tel form-control">
+            <small>Error message</small>
             <input type="text" id="telefono" placeholder="Teléfono" required />
+            <i class="fas fa-check-circle"></i>
+            <i class="fas fa-exclamation-circle"></i>
           </div>
           <button id="pagar_btn" type="submit">PAGAR</button>
         </form>
