@@ -74,6 +74,9 @@ app.get("/citas/agendar", (req, res) => {
 app.get("/citas/pagos/", (req, res) => {
   const sucursal = req.query.sucursal;
   const fecha = req.query.fecha;
+  if (!sucursal && !fecha) {
+    return res.sendStatus(400);
+  }
   res.render("pago", { sucursal: sucursal.toUpperCase(), fecha: fecha });
 });
 
@@ -97,7 +100,8 @@ app.post("/citas/api/sendmail/", async (req, res) => {
 const sendMail = (email, order_id) => {
   return new Promise((resolve, reject) => {
     let transport = nodemailer.createTransport({
-      service: "gmail",
+      host: process.env.HOST_MAIL,
+      port: 465,
       auth: {
         user: process.env.EMAIL,
         pass: process.env.PASSWORD,
@@ -114,6 +118,7 @@ const sendMail = (email, order_id) => {
 
     transport.sendMail(mailOptions, (error, info) => {
       if (error) {
+        console.log(error);
         reject(error);
       } else {
         resolve(info);
