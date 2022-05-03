@@ -43,6 +43,10 @@ p {
   font-size: 1rem;
 }
 
+form button {
+  width: 100%;
+}
+
 #logo {
   width: 75%;
   max-width: 300px;
@@ -369,6 +373,7 @@ input[type="password"]:focus {
 #formulario_btn {
   background-color: WHITE;
 }
+
 /* #_1 { animation: bloque 0.5s forwards infinite; }
 #_2 { animation: disco 0.5s 0.1s forwards infinite; }
 #_3 { animation: bloque 0.5s 0.2s forwards infinite; }

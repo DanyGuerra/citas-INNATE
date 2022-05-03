@@ -21,8 +21,6 @@ pagarBtn.addEventListener("click", async (e) => {
   document.getElementById("preloader_container").style.display = "flex";
   setAnimation();
 
-  document.getElementById("pago-form").checkValidity();
-
   deleteAnimationInterval = setInterval(deleteAnimation, 1100);
   setAnimationInterval = setInterval(setAnimation, 2200);
 
